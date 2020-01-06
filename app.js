@@ -7,6 +7,7 @@ const app = () => {
   const sounds = document.querySelectorAll(".sound-picker button");
 
   const timeDisplay = document.querySelector(".time-display");
+  const timeSelect = document.querySelectorAll(".time-select button");
 
   const outlineLength = outline.getTotalLength();
 
@@ -17,6 +18,15 @@ const app = () => {
 
   play.addEventListener("click", () => {
     checkPlaying(song);
+  });
+
+  timeSelect.forEach(option => {
+    option.addEventListener("click", function() {
+      fakeDuration = this.getAttribute("data-time");
+      timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(
+        fakeDuration % 60
+      )}`;
+    });
   });
 
   const checkPlaying = song => {
