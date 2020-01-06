@@ -30,6 +30,18 @@ const app = () => {
       play.src = "./svg/play.svg";
     }
   };
+
+  song.ontimeupdate = () => {
+    let currentTime = song.currentTime;
+    let elapsed = fakeDuration - currentTime;
+    let seconds = Math.floor(elapsed % 60);
+    let minutes = Math.floor(elapsed / 60);
+
+    let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
+    outline.style.strokeDashoffset = progress;
+
+    timeDisplay.textContent = `${minutes}:${seconds}`;
+  };
 };
 
 app();
